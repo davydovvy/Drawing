@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Development\\Drawing\\Drawing.csproj": {}
+    "d:\\Development\\Drawing\\Drawing.csproj": {}
   },
   "projects": {
-    "D:\\Development\\Drawing\\Drawing.csproj": {
+    "d:\\Development\\Drawing\\Drawing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Development\\Drawing\\Drawing.csproj",
+        "projectUniqueName": "d:\\Development\\Drawing\\Drawing.csproj",
         "projectName": "Drawing",
-        "projectPath": "D:\\Development\\Drawing\\Drawing.csproj",
+        "projectPath": "d:\\Development\\Drawing\\Drawing.csproj",
         "packagesPath": "C:\\Users\\davyd\\.nuget\\packages\\",
-        "outputPath": "D:\\Development\\Drawing\\obj\\",
+        "outputPath": "d:\\Development\\Drawing\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\davyd\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,6 +38,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "GitHub": {
+              "target": "Package",
+              "version": "[1.34.0, )"
+            },
             "System.Drawing.Common": {
               "target": "Package",
               "version": "[6.0.0, )"
