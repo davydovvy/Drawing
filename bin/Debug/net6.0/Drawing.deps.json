@@ -1,0 +1,184 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Drawing/1.0.0": {
+        "dependencies": {
+          "GitHub": "1.34.0",
+          "System.Drawing.Common": "6.0.0"
+        },
+        "runtime": {
+          "Drawing.dll": {}
+        }
+      },
+      "Carbon.Data.Protection/1.5.0": {
+        "runtime": {
+          "lib/net5.0/Carbon.Data.Protection.dll": {
+            "assemblyVersion": "1.5.0.0",
+            "fileVersion": "1.5.0.0"
+          }
+        }
+      },
+      "Carbon.Packaging/1.50.0": {
+        "dependencies": {
+          "Carbon.Data.Protection": "1.5.0",
+          "Carbon.Storage": "3.0.1",
+          "Carbon.Versioning": "2.0.1"
+        },
+        "runtime": {
+          "lib/net5.0/Carbon.Packaging.dll": {
+            "assemblyVersion": "1.50.0.0",
+            "fileVersion": "1.50.0.0"
+          }
+        }
+      },
+      "Carbon.Storage/3.0.1": {
+        "runtime": {
+          "lib/net5.0/Carbon.Storage.dll": {
+            "assemblyVersion": "3.0.1.0",
+            "fileVersion": "3.0.1.0"
+          }
+        }
+      },
+      "Carbon.VersionControl/2.6.0": {
+        "dependencies": {
+          "Carbon.Storage": "3.0.1"
+        },
+        "runtime": {
+          "lib/net5.0/Carbon.VersionControl.dll": {
+            "assemblyVersion": "2.6.0.0",
+            "fileVersion": "2.6.0.0"
+          }
+        }
+      },
+      "Carbon.Versioning/2.0.1": {
+        "runtime": {
+          "lib/net5.0/Carbon.Versioning.dll": {
+            "assemblyVersion": "2.0.1.0",
+            "fileVersion": "2.0.1.0"
+          }
+        }
+      },
+      "GitHub/1.34.0": {
+        "dependencies": {
+          "Carbon.Packaging": "1.50.0",
+          "Carbon.VersionControl": "2.6.0"
+        },
+        "runtime": {
+          "lib/net5.0/GitHub.dll": {
+            "assemblyVersion": "1.34.0.0",
+            "fileVersion": "1.34.0.0"
+          }
+        }
+      },
+      "Microsoft.Win32.SystemEvents/6.0.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Win32.SystemEvents.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "System.Drawing.Common/6.0.0": {
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/System.Drawing.Common.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/net6.0/System.Drawing.Common.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          },
+          "runtimes/win/lib/net6.0/System.Drawing.Common.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Drawing/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Carbon.Data.Protection/1.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3/+PcHtuKgBotHII1Dth0SLBhNDvu2oCec0QdlRus/oHyr25BpfyhvV7h84hWP4UQQjmvymQwM0f7jLy0Vr86w==",
+      "path": "carbon.data.protection/1.5.0",
+      "hashPath": "carbon.data.protection.1.5.0.nupkg.sha512"
+    },
+    "Carbon.Packaging/1.50.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-w8QyiBSWSqgpTWmWSYe1jJHPa20i+pd+tPT0qFWvv0gsYuPkBU6zEbH9e6Y1Xr7HdT0SFEF80neWYKy0Y6yODA==",
+      "path": "carbon.packaging/1.50.0",
+      "hashPath": "carbon.packaging.1.50.0.nupkg.sha512"
+    },
+    "Carbon.Storage/3.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cymUDZ3EOryvSZEG9R8aK1Q42bbmBAoh8NX+mZdXar6AqzbUiw3rC8EmDbleRl/3l+7cpVd/TDFGxZsslfPqpA==",
+      "path": "carbon.storage/3.0.1",
+      "hashPath": "carbon.storage.3.0.1.nupkg.sha512"
+    },
+    "Carbon.VersionControl/2.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oo+oCdcRwrwjn/4I8CwzrDjH+vcTGvr9QPjJp4HFWAba3ahWiZhCWhioumbmBxnetLENGq6w64TC/xSNwecZbg==",
+      "path": "carbon.versioncontrol/2.6.0",
+      "hashPath": "carbon.versioncontrol.2.6.0.nupkg.sha512"
+    },
+    "Carbon.Versioning/2.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sb5wO/BgMAMvUX6gf41h7Qhl5BkbDZbGiZxm8krEq/cNbpnH+kWlo9TJmTk/5XBB+K97xzgpk2VkBedmEl1Ewg==",
+      "path": "carbon.versioning/2.0.1",
+      "hashPath": "carbon.versioning.2.0.1.nupkg.sha512"
+    },
+    "GitHub/1.34.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-X+Rn0rMMBdxlaFIL/cZAowKcnU29/oNZ9c3p61yvgJ962LmFUjlF7c2rtqbWMmOjoWxWfdoGygc2EwIPSDUQng==",
+      "path": "github/1.34.0",
+      "hashPath": "github.1.34.0.nupkg.sha512"
+    },
+    "Microsoft.Win32.SystemEvents/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hqTM5628jSsQiv+HGpiq3WKBl2c8v1KZfby2J6Pr7pEPlK9waPdgEO6b8A/+/xn/yZ9ulv8HuqK71ONy2tg67A==",
+      "path": "microsoft.win32.systemevents/6.0.0",
+      "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
+    },
+    "System.Drawing.Common/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NfuoKUiP2nUWwKZN6twGqXioIe1zVD0RIj2t976A+czLHr2nY454RwwXs6JU9Htc6mwqL6Dn/nEL3dpVf2jOhg==",
+      "path": "system.drawing.common/6.0.0",
+      "hashPath": "system.drawing.common.6.0.0.nupkg.sha512"
+    }
+  }
+}
