@@ -48,3 +48,9 @@ C:\Development\Drawing\obj\Debug\net5.0\Drawing.dll
 C:\Development\Drawing\obj\Debug\net5.0\ref\Drawing.dll
 C:\Development\Drawing\obj\Debug\net5.0\Drawing.pdb
 C:\Development\Drawing\obj\Debug\net5.0\Drawing.genruntimeconfig.cache
+D:\Development\Drawing\bin\Debug\net5.0\Carbon.Data.Protection.dll
+D:\Development\Drawing\bin\Debug\net5.0\Carbon.Packaging.dll
+D:\Development\Drawing\bin\Debug\net5.0\Carbon.Storage.dll
+D:\Development\Drawing\bin\Debug\net5.0\Carbon.VersionControl.dll
+D:\Development\Drawing\bin\Debug\net5.0\Carbon.Versioning.dll
+D:\Development\Drawing\bin\Debug\net5.0\GitHub.dll

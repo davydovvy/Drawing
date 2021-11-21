@@ -13,18 +13,23 @@ namespace Drawing
             graph.Clear(Color.Azure);
             Pen pen = new Pen(Brushes.Black);
 
-            Hilbert(graph, pen, x: 0f, y: 0f, size: 1024f, direction: 1, depth: 5, quadrant: 0, connectionPoint: new PointF(0,0));
+            Hilbert(graph, pen, x: 0f, y: 0f, size: 1024f, depth: 8, direction: 1, connectorDirection: 0, isInverse: false);
 
             image.Save("graph.png", System.Drawing.Imaging.ImageFormat.Png);
 
             Console.WriteLine("Hello World!");
         }
 
-        static PointF Hilbert(Graphics graph, Pen pen, float x, float y, float size, int direction, int depth, int quadrant, PointF connectionPoint)
+        static PointF Hilbert(Graphics graph, Pen pen, float x, float y, float size, int depth, int direction, int connectorDirection, bool isInverse)
         {
-            if (depth == 2) graph.DrawRectangle(pen, x, y, size, size);
             if (direction > 4) direction -= 4;
 
+            //if (depth == 1) graph.DrawRectangle(pen, x, y, size, size);
+            //graph.DrawString(connectorDirection.ToString(), new Font(new FontFamily("Consolas"), 20, FontStyle.Regular),
+              //  Brushes.Blue, new PointF(x+size/2-20, y+size/2-15));
+            // graph.DrawString(isInverse.ToString(), new Font(new FontFamily("Consolas"), 20, FontStyle.Regular),
+            //     Brushes.Green, new PointF(x+size/2, y+size/2-15));
+            
             var points = new PointF[]
             {
                 new PointF(x,        y+size/2),
@@ -33,113 +38,68 @@ namespace Drawing
                 new PointF(x+size/2, y+size/2)
             };
 
-            points = RotatePoints(points, direction);
+            if (direction > 1) points = RotatePoints(points, direction);
+            PointF lastPoint = new PointF(0,0);
 
-            PointF[] innerPoints;
-            PointF lastPoint = new PointF(0, 0);
-            
-            if (depth == 1)
+            if (depth == 0)
             {
-                innerPoints = DrawElement(graph, pen, points[0].X, points[0].Y, size / 2, direction+1, quadrant: 1);
-                if (direction == 2 || direction == 4)
-                    lastPoint = new PointF(innerPoints[3].X, innerPoints[3].Y);
-                innerPoints = DrawElement(graph, pen, points[1].X, points[1].Y, size / 2, direction, quadrant: 2);
-                innerPoints = DrawElement(graph, pen, points[2].X, points[2].Y, size / 2, direction, quadrant: 3);
-                innerPoints = DrawElement(graph, pen, points[3].X, points[3].Y, size / 2, direction+3, quadrant: 4);
-                if (direction == 1 || direction == 3)
-                    lastPoint = new PointF(innerPoints[0].X, innerPoints[0].Y);
-                //else
-                //      graph.DrawLine(pen, connectionPoint, innerPoints[0]);
+                lastPoint = DrawElement(graph, pen, points, size, isInverse);
+                DrawConnector(graph, pen, lastPoint, connectorDirection, size);
             }
             else
             {
                 var endPoints = new PointF[4];
-                endPoints[0] = Hilbert(graph, pen, points[0].X, points[0].Y, size / 2, direction + 1, depth - 1, quadrant: 1, connectionPoint: lastPoint);
-                endPoints[1] = Hilbert(graph, pen, points[1].X, points[1].Y, size / 2, direction, depth - 1, quadrant: 2, connectionPoint: lastPoint);
-                endPoints[2] = Hilbert(graph, pen, points[2].X, points[2].Y, size / 2, direction, depth - 1, quadrant: 3, connectionPoint: lastPoint);
-                endPoints[3] = Hilbert(graph, pen, points[3].X, points[3].Y, size / 2, direction + 3, depth - 1, quadrant: 4, connectionPoint: lastPoint);
-                if (direction == 1 || direction == 3)
-                {
-                    lastPoint = endPoints[3];
-                    //graph.DrawRectangle(pen, endPoints[3].X, endPoints[3].Y, 6, 6);
-                }
-                else if (direction == 2 || direction == 4) 
-                    lastPoint = endPoints[0];
-
+                endPoints[0] = Hilbert(graph, pen, points[0].X, points[0].Y, size / 2, depth - 1, direction + 1, connectorDirection: (isInverse?0:direction), isInverse: !isInverse);
+                endPoints[1] = Hilbert(graph, pen, points[1].X, points[1].Y, size / 2, depth - 1, direction, connectorDirection:2 + direction - 1 + (isInverse?1:0), isInverse: isInverse);
+                endPoints[2] = Hilbert(graph, pen, points[2].X, points[2].Y, size / 2, depth - 1, direction, connectorDirection:3 + direction - 1 + (isInverse?1:0), isInverse: isInverse);
+                endPoints[3] = Hilbert(graph, pen, points[3].X, points[3].Y, size / 2, depth - 1, direction + 3, connectorDirection: (isInverse?direction:0)  , isInverse: !isInverse);
+                lastPoint = endPoints[isInverse?0:3];
+                
                 //graph.DrawRectangle(pen, lastPoint.X, lastPoint.Y, 6, 6);
-                if (depth == 2)
-                {
-                    if (direction == 1)
-                    {
-                        if (quadrant == 1 || quadrant == 2  || quadrant == 4)
-                            graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X + size/8, lastPoint.Y);
-                        else
-                            graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X, lastPoint.Y + size/8);
-                    } 
-                
-                    if (direction == 2)
-                    {
-                        if (quadrant == 1 || quadrant == 3  || quadrant == 4)
-                            graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X, lastPoint.Y - size/8);
-                        else
-                            graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X - size/8, lastPoint.Y);
-                    }
-                    
-                    // if (direction == 3)
-                    // {
-                    //     if (quadrant == 3  || quadrant == 2)
-                    //         graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X, lastPoint.Y - size/8);
-                    //     else
-                    //         graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X - size/8, lastPoint.Y);
-                    // }
-
-                }
-                
+                DrawConnector(graph, pen, lastPoint, connectorDirection, size/((float)Math.Pow(2, depth)));
             }
-
+            
             return lastPoint;
         }
 
-        static PointF[] DrawElement(Graphics graph, Pen pen, float x, float y, float size, int direction, int quadrant)
+        static PointF DrawElement(Graphics graph, Pen pen, PointF[] points, float size, bool isInverse)
         {
-            if (direction > 4) direction -= 4;
+            points = points.Select(point => new PointF(point.X + size / 4, point.Y + size / 4)).ToArray();
 
-            var points = new PointF[]
+            // Change places for points 0,3 and 1,2 accordingly
+            if (isInverse)
             {
-                new PointF(x,        y+size/2),
-                new PointF(x,        y),
-                new PointF(x+size/2, y),
-                new PointF(x+size/2, y+size/2)
-            };
-
-            points = RotatePoints(points, direction);
-            points = points.Select(point => new PointF(point.X + size/4, point.Y + size/4)).ToArray();
-            
-            graph.DrawLines(pen, points);
-
-            // Draw connector to the next quadrant
-            switch (quadrant)
-            {
-                case 1:
-                    graph.DrawLine(pen, points[0].X, points[0].Y, 2*points[0].X - points[3].X, 2*points[0].Y - points[3].Y);
-                    break;
-
-                case 2: 
-                    graph.DrawLine(pen, points[3].X, points[3].Y, 2*points[3].X - points[0].X, 2*points[3].Y - points[0].Y);
-                    break;
-
-                case 3:
-                    graph.DrawLine(pen, points[3].X, points[3].Y, 2*points[3].X - points[2].X, 2*points[3].Y - points[2].Y);
-                    break;
+                var temp = points[0];
+                points[0] = points[3];
+                points[3] = temp;
+                temp = points[1];
+                points[1] = points[2];
+                points[2] = temp;
             }
 
-            return points;
+            // Draw lines between three points
+            graph.DrawLines(pen, points);
+            return points[3];
+        }
+
+        static void DrawConnector(Graphics graph, Pen pen, PointF startPoint, int direction, float size)
+        {
+            direction = (direction-1)%4 + 1;
+            switch(direction)
+            {
+                case 1: graph.DrawLine(pen, startPoint, PointF.Add(startPoint, new SizeF(0, -size/2)));
+                break;
+                case 2: graph.DrawLine(pen, startPoint, PointF.Add(startPoint, new SizeF(size/2, 0)));
+                break;
+                case 3: graph.DrawLine(pen, startPoint, PointF.Add(startPoint, new SizeF(0, size/2)));
+                break;
+                case 4: graph.DrawLine(pen, startPoint, PointF.Add(startPoint, new SizeF(-size/2, 0)));
+                break;
+            }
         }
 
         static PointF[] RotatePoints(PointF[] points, int direction)
         {
-            if (direction == 1) return points;
-
             var result = new PointF[4];
 
             // Shift array number of times equal to direction-1

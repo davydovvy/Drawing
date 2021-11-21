@@ -1,0 +1,27 @@
+if (depth == 2)
+                {
+                    if (direction == 1)
+                    {
+                        if (quadrant == 1 || quadrant == 2  || quadrant == 4)
+                            graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X + size/8, lastPoint.Y);
+                        else
+                            graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X, lastPoint.Y + size/8);
+                    } 
+                
+                    if (direction == 2)
+                    {
+                        if (quadrant == 1 || quadrant == 3  || quadrant == 4)
+                            graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X, lastPoint.Y - size/8);
+                        else
+                            graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X - size/8, lastPoint.Y);
+                    }
+                    
+                    // if (direction == 3)
+                    // {
+                    //     if (quadrant == 3  || quadrant == 2)
+                    //         graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X, lastPoint.Y - size/8);
+                    //     else
+                    //         graph.DrawLine(pen, lastPoint.X, lastPoint.Y, lastPoint.X - size/8, lastPoint.Y);
+                    // }
+
+                }
